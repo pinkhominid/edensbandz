@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Eden's Bandz</title>
+  <link href='http://fonts.googleapis.com/css?family=Raleway+Dots' rel='stylesheet' type='text/css'>
+  <style>
+    * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+    body,
+    .order input, .order select, .order textarea {
+      font-family: 'Raleway Dots', cursive;
+      line-height: 1.6;
+      font-size: 1em;
+    }
+    body {
+      color: #666;
+      background: url(edensbracelet-med.jpg) no-repeat;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    section > * {
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 { font-size: 5em; margin-bottom: 0; }
+    h2 { font-size: 3em; }
+    a, a:visited { color: #f82a73; }
+    header, section { padding: 100px 0; }
+    iframe { margin: 1em 0; }
+    .scrollbar::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      background-color: #F5F5F5;
+    }
+    .scrollbar::-webkit-scrollbar {
+      width: 10px;
+      background-color: #F5F5F5;
+    }
+    .scrollbar::-webkit-scrollbar-thumb {
+      background-color: #aaa;
+    }
+    .about {
+      background-color: #50b7e0;
+      color: #fff;
+    }
+    .about a, .about a:visited { color: #06406c; }
+    .gallery > img {
+      vertical-align: top;
+      margin: .5em;
+    }
+    .order {
+      background-color: #f82a73;
+      color: #fff;
+    }
+    .order fieldset { border: 0; }
+    .order form > * {
+      vertical-align: top;
+      display: inline-block;
+      margin: 0.5em;
+      padding: 0.5em;
+    }
+    .order input, .order select, .order textarea {
+      color: #4d4d4d;
+      background: #e8e8e8;
+      border: 0;
+      min-width: 250px;
+    }
+    .order input:focus, .order select:focus, .order textarea:focus {
+      background-color: #fff;
+    }
+    .order select, .order input {
+      -webkit-appearance: none;
+      -webkit-border-radius: 0;
+      height: 2.6em;
+    }
+    .order label { min-width: 150px; text-align: right; }
+    .order input[type=reset],
+    .order input[type=submit] {
+      min-width: 150px;
+      background-color: #eeee10;
+      color: #000;
+    }
+    .order input[type=reset]:hover,
+    .order input[type=reset]:focus,
+    .order input[type=submit]:hover,
+    .order input[type=submit]:focus { background-color: #ffff53; }
+    .order label { cursor: help; }
+  </style>
+</head>
+<body class="scrollbar">
+  <header>
+    <h1>Eden's Bandz</h1>
+    <img src="edenpeace.jpg">
+    <p>Handcrafted rubber band bracelets made with &lt;3 by Eden</p>
+    <!--[if lt IE 8]>
+      <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to use this site</p>
+    <![endif]-->
+  </header>
+  <section class="about">
+    <h2>Eden is a sweet girl who recently learned how to make rubber band bracelets with a loom</h2>
+    <iframe width="315" height="420" src="//www.youtube.com/embed/bIdntqqB7uw?rel=0" frameborder="0" allowfullscreen></iframe>
+    <p>She is selling bracelets to help with her college fund as well as to give back to the community<br>20% of profit goes to <a href="http://kellyskidz.net" target="_blank">Kelly's Kidz</a><br>To learn more about Eden and her family visit <a href="http://micropreemietwins.com" target="_blank">Micro Preemie Twins</a></p>
+  </section>
+  <section class="gallery">
+    <h2>Gallery</h2>
+    <img src="ebands1.jpg">
+    <img src="bbands1-sm.jpg">
+  </section>
+  <section class="order">
+    <h2>Order</h2>
+    <form id="addForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <label for="colors" title="List the colors you like">Colors</label>
+      <input id="colors" name="item_number" type="text" placeholder="pink + purple" required><br>
+      <label title="Estimate the size of your wrist">Size</label>
+      <input type="hidden" name="on0" value="size">
+      <select name="os0" required>
+        <option value="">select a size</option>
+        <option value="child small">child small</option>
+        <option value="child medium">child medium</option>
+        <option value="child large">child large</option>
+        <option value="adult small">adult small</option>
+        <option value="adult medium">adult medium</option>
+        <option value="adult large">adult large</option>
+      </select><br>
+      <label for="amount" title="Name your own price in USD, $1 minimum please">Price</label>
+      <input id="amount" name="amount" type="number" min="1" step="0.01" placeholder="name your price" required><br>
+      <label for="message" title="Send a note to Eden">Message</label>
+      <textarea id="message" name="custom" rows="3" placeholder="thanks Eden :-)"></textarea><br>
+      <input type="hidden" name="cmd" value="_cart">
+      <input type="hidden" name="add" value="1">
+      <input type="hidden" name="business" value="ericson_john@yahoo.com">
+      <input type="hidden" name="item_name" value="Custom bracelet by Eden">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="hidden" name="shipping" value="0.50">
+      <input type="hidden" name="handling" value="0.50 ">
+      <input type="hidden" name="return" value="http://edensbands.com#?paid=1">
+      <input type="hidden" name="cancel_return" value="http://edensbands.com#?paid=0">
+      <input type="submit" value="Add to cart">
+    </form>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <input type="hidden" name="business" value="ericson_john@yahoo.com">
+      <input type="hidden" name="cmd" value="_cart">
+      <input type="hidden" name="display" value="1">
+      <input type="submit" value="View cart">
+    </form>
+  </section>
+  <script src="minicart.min.js"></script>
+  <script>
+    /*
+     * todo
+     * biz paypal acct
+     * google analytics
+     * make sure shipping address and email are in invoice
+     * host on gh-pages
+     * domain name
+     * point 'a' record to gh
+     * market
+     * keep receipts!
+     * lookup tax rules
+     */
+    paypal.minicart.render();
+
+    // todo: call this upon return from completed payment
+    //paypapl.minicart.reset();
+
+    var addForm = document.forms['addForm'];
+    addForm.onsubmit = function () {
+      setTimeout(function () {
+        addForm.reset();
+      }, 0);
+    }
+  </script>
+</body>
+</html>
