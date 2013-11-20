@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Eden's Bandz</title>
+  <meta name="description" content="Handcrafted rubber band bracelets made with <3 by Eden">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
-  <link href='http://fonts.googleapis.com/css?family=Raleway+Dots' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,300' rel='stylesheet' type='text/css'>
   <style>
     * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
     body,
     .order input, .order select, .order textarea {
-      font-family: 'Raleway Dots', cursive;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
       line-height: 1.6;
       font-size: 1em;
     }
@@ -25,8 +29,8 @@
       margin-left: auto;
       margin-right: auto;
     }
-    h1 { font-size: 5em; margin-bottom: 0; }
-    h2 { font-size: 3em; }
+    h1 { font-weight: 100; font-size: 5em; margin-bottom: 0; }
+    h2 { font-weight: 100; font-size: 3em; }
     a, a:visited { color: #f82a73; }
     header, section { padding: 100px 0; }
     iframe { margin: 1em 0; }
@@ -87,7 +91,21 @@
     .order input[type=submit]:hover,
     .order input[type=submit]:focus { background-color: #ffff53; }
     .order label { cursor: help; }
+    .message {
+      display: none;
+      position: fixed;
+      top: 0;
+      width: 250px;
+      margin: 100px 0 0 -125px;
+      background: rgb(50,50,50);
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      color: #fff;
+    }
   </style>
+  <!--[if lt IE 9]>
+    <script src="html5shiv.js"></script>
+  <![endif]-->
 </head>
 <body class="scrollbar">
   <header>
@@ -99,23 +117,26 @@
     <![endif]-->
   </header>
   <section class="about">
-    <h2>Eden is a sweet girl who recently learned how to make rubber band bracelets with a loom</h2>
+    <h2>Eden is a sweet girl with cerebral palsy who recently learned how to make rubber band bracelets with a loom</h2>
     <iframe width="315" height="420" src="//www.youtube.com/embed/bIdntqqB7uw?rel=0" frameborder="0" allowfullscreen></iframe>
-    <p>She is selling bracelets to help with her college fund as well as to give back to the community<br>20% of profit goes to <a href="http://kellyskidz.net" target="_blank">Kelly's Kidz</a><br>To learn more about Eden and her family visit <a href="http://micropreemietwins.com" target="_blank">Micro Preemie Twins</a></p>
+    <p>She is selling bracelets to help with her college fund as well as give back to the community</p>
+    <p>20% of profit goes to <a href="http://kellyskidz.net" target="_blank">Kelly's Kidz</a></p>
+    <p>To learn more about Eden and her family visit <a href="http://micropreemietwins.com" target="_blank">Micro Preemie Twins</a></p>
   </section>
   <section class="gallery">
     <h2>Gallery</h2>
     <img src="ebands1.jpg">
     <img src="bbands1-sm.jpg">
+    <img src="jbands1-sm.jpg">
   </section>
   <section class="order">
     <h2>Order</h2>
     <form id="addForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">
       <label for="colors" title="List the colors you like">Colors</label>
       <input id="colors" name="item_number" type="text" placeholder="pink + purple" required><br>
-      <label title="Estimate the size of your wrist">Size</label>
+      <label for="size" title="Estimate the size of your wrist">Size</label>
       <input type="hidden" name="on0" value="size">
-      <select name="os0" required>
+      <select id="size" name="os0" required>
         <option value="">select a size</option>
         <option value="child small">child small</option>
         <option value="child medium">child medium</option>
@@ -130,46 +151,91 @@
       <textarea id="message" name="custom" rows="3" placeholder="thanks Eden :-)"></textarea><br>
       <input type="hidden" name="cmd" value="_cart">
       <input type="hidden" name="add" value="1">
-      <input type="hidden" name="business" value="eden.deanna@gmail.com">
+      <input type="hidden" name="business" value="ZA46VXBBVDP6A">
       <input type="hidden" name="item_name" value="Custom bracelet by Eden">
       <input type="hidden" name="currency_code" value="USD">
       <input type="hidden" name="shipping" value="0.50">
       <input type="hidden" name="handling" value="0.50 ">
       <input type="hidden" name="return" value="http://edensbandz.com#?paid=1">
       <input type="hidden" name="cancel_return" value="http://edensbandz.com#?paid=0">
-      <input type="submit" value="Add to cart">
+      <input id="addBtn" type="submit" value="Add to cart">
     </form>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-      <input type="hidden" name="business" value="ericson_john@yahoo.com">
+      <input type="hidden" name="business" value="ZA46VXBBVDP6A">
       <input type="hidden" name="cmd" value="_cart">
       <input type="hidden" name="display" value="1">
       <input type="submit" value="View cart">
     </form>
   </section>
+  <div class="message"></div>
   <script src="minicart.min.js"></script>
   <script>
     /*
      * todo
-     * point 'a' record to gh
-     * handle pp return
-     * biz paypal acct
-     * google analytics
      * make sure shipping address and email are in invoice
      * market
      * keep receipts!
      * lookup tax rules
      */
-    paypal.minicart.render();
+    var paidMatch = /^#.*(?:\?|&)paid=(\d)/.exec(location.hash)
+      , addForm = document.forms['addForm']
+      , addBtn = document.getElementById('addBtn');
 
-    // todo: call this upon return from completed payment
-    //paypapl.minicart.reset();
+    if (paidMatch !== null) {
+      if (paidMatch[1] === '1') {
+        showMessage('Thank you!', 15000);
+        try { paypal.minicart.reset(); } catch (e) {}
+      }
+      location.hash = '';
+    }
 
-    var addForm = document.forms['addForm'];
-    addForm.onsubmit = function () {
+    addBtn.onclick = addForm.onsubmit = function (e) {
+      if (!validate()) {
+        showMessage('Please complete the form');
+        preventDefault(e);
+        return;
+      }
       setTimeout(function () {
         addForm.reset();
       }, 0);
     }
+
+    paypal.minicart.render();
+
+    function showMessage(msg, ttl) {
+      var message = document.querySelector('.message');
+      message.innerHTML = msg;
+      message.style.display = 'inline-block';
+      setTimeout(function () {
+        message.style.display = 'none';
+      }, ttl || 5000);
+    }
+
+    function validate() {
+      var colors = trim(document.getElementById('colors').value)
+        , size = trim(document.getElementById('size').value)
+        , amount = trim(document.getElementById('amount').value);
+
+      return colors.length && size.length && amount.length && +amount >= 1;
+    }
+
+    function preventDefault(e) {
+      e = e || window.event;
+      if (e.preventDefault) e.preventDefault();
+      else e.returnValue = false;
+    }
+
+    function trim(s) {
+      return String.prototype.trim ? s.trim() : s.replace(/^\s+|\s+$/g, '');
+    }
+  </script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-45853569-1', 'edensbandz.com');
+    ga('send', 'pageview');
   </script>
 </body>
 </html>
