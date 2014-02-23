@@ -115,6 +115,7 @@
     <h1>Eden's Bandz</h1>
     <img src="edenpeace.jpg">
     <p>Handcrafted rubber band bracelets made with &lt;3 by Eden</p>
+    <p><a href="http://edensbandz.com">edensbandz.com</a></p>
     <!--[if lt IE 8]>
       <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to use this site</p>
     <![endif]-->
@@ -153,7 +154,7 @@
       <input type="hidden" name="on1" value="msg">
       <input type="hidden" id="os1" name="os1" value="">
       <label for="message" title="Send a note to Eden">Message</label>
-      <textarea id="message" rows="3" placeholder="thanks Eden :-)"></textarea><br>
+      <textarea id="message" rows="3" maxlength="200" placeholder="thanks Eden :-)"></textarea><br>
       <input type="hidden" name="cmd" value="_cart">
       <input type="hidden" name="add" value="1">
       <input type="hidden" name="business" value="ZA46VXBBVDP6A">
@@ -198,7 +199,7 @@
       }
 
       // sync os1 with message, bc cart isn't pulling value from textarea
-      os1.value = message.value;
+      os1.value = message.value || 'n/a';
 
       setTimeout(function () {
         addForm.reset();
